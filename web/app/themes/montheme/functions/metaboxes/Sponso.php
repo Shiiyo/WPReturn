@@ -8,6 +8,29 @@ class SponsoMetaBox
     {
         add_action('add_meta_boxes', [self::class, 'add'], 10, 2);
         add_action('save_post', [self::class, 'save']);
+        add_action('pre_get_posts', [self::class, 'pre_get_posts']);
+        add_filter('query_vars', [self::class, 'query_vars']);
+    }
+
+    public static function pre_get_posts(WP_Query $query)
+    {
+        if (is_admin() || !is_search() || !$query->is_main_query()) {
+            return;
+        }
+        if (get_query_var('sponso') === '1') {
+            $meta_query = $query->get('meta_query', []);
+            $meta_query[] = [
+                'key' => self::META_KEY,
+                'compare' => 'EXISTS',
+            ];
+            $query->set('meta_query', $meta_query);
+        }
+    }
+
+    public static function query_vars($params)
+    {
+        $params[] = 'sponso';
+        return $params;
     }
 
     public static function add($postType, $post)

@@ -9,6 +9,7 @@ require_once('functions/Init.php');
 require_once('functions/options/Agence.php');
 require_once('functions/Biens.php');
 require_once('functions/Article.php');
+require_once('functions/widgets/Widget.php');
 
 
 SponsoMetaBox::register();
@@ -20,4 +21,9 @@ AppInit::register();
 AgenceMenuPage::register();
 Biens::register();
 Article::register();
+Widget::register();
+
+
+
+
 
