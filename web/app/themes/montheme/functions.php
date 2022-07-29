@@ -1,4 +1,5 @@
 <?php
+require_once('functions/walker/CommentWalker.php');
 require_once('functions/metaboxes/Sponso.php');
 require_once('functions/menus/Menu.php');
 require_once('functions/Supports.php');
