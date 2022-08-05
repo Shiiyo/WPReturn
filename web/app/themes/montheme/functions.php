@@ -11,6 +11,7 @@ require_once('functions/options/Agence.php');
 require_once('functions/Biens.php');
 require_once('functions/Article.php');
 require_once('functions/widgets/Widget.php');
+require_once('functions/options/Apparence.php');
 
 
 SponsoMetaBox::register();
@@ -25,6 +26,5 @@ Article::register();
 Widget::register();
 
 
-
-
-
+add_action('after_switch_theme', 'flush_rewrite_rules');
+add_action('switch_theme', 'flush_rewrite_rules');
